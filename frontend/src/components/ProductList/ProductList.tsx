@@ -3,10 +3,10 @@ import { ProductCard } from "../ProductCard";
 import { useProducts } from "@/hooks/useProducts";
 
 export const ProductList = () => {
-    const { data, isLoading, isError } = useProducts();
+    const { data, isPending, error } = useProducts();
 
-    if (isLoading) return <Spinner size="xl" />;
-    if (isError) return <Text color="red.500">Failed to load products.</Text>;
+    if (isPending) return <Spinner size="xl" />;
+    if (error) return <Text color="red.500">Failed to load products.</Text>;
 
     return (
         <Box w="100%">
