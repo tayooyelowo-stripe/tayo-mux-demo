@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import productRoutes from './routes/productRoutes';
+import checkoutRoutes from './routes/checkoutRoutes';
 import { errorHandler } from './middlewares/errorHandler';
 
 
@@ -11,6 +12,7 @@ app.use(cors());
 
 // Routes
 app.use('/api/products', productRoutes);
+app.use('/api/checkout', checkoutRoutes);
 
 app.use(errorHandler);
 

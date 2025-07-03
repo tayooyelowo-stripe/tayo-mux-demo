@@ -17,7 +17,7 @@ const DEFAULT_PRODUCT: Product = {
     },
     title: 'Living room Sofa',
     description: 'This sofa is perfect for modern tropical spaces, baroque inspired spaces.',
-    price: 4500,
+    price: 4500
 };
 
 export let products: Product[] = Array.from({ length: 15 }, (_, i) => ({
