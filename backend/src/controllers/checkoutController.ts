@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import { config } from '../config/config';
 
 const stripe = require('stripe')(config.stripeSecretKey);
-console.log(config.stripeSecretKey);
 
 export const createCheckoutSession = async (req: Request, res: Response, next: NextFunction) => {
   try {
