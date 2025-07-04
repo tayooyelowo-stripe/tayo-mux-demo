@@ -7,6 +7,7 @@ export interface Product {
     title: string;
     description: string;
     price: number;
+    priceId: string;
 }
 
 const DEFAULT_PRODUCT: Product = {
@@ -17,7 +18,8 @@ const DEFAULT_PRODUCT: Product = {
     },
     title: 'Living room Sofa',
     description: 'This sofa is perfect for modern tropical spaces, baroque inspired spaces.',
-    price: 4500
+    price: 4500,
+    priceId: 'price_1RgtqkGbaBCXbyosxI9PAVPe',
 };
 
 export let products: Product[] = Array.from({ length: 15 }, (_, i) => ({

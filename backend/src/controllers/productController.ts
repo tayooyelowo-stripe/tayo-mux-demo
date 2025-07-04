@@ -3,8 +3,8 @@ import { Product, products } from '../models/product';
 
 const createProduct = (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { id, img, title, description, price } = req.body;
-        const newProduct: Product = { id, img, title, description, price };
+        const { id, img, title, description, price, priceId } = req.body;
+        const newProduct: Product = { id, img, title, description, price, priceId };
         products.push(newProduct);
         res.status(201).json(newProduct);
     } catch (error) {
