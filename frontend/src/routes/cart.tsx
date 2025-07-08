@@ -1,4 +1,4 @@
-import { CartList } from '@/components/CartList/CartList'
+import { CartPage } from '@/components/CartPage/CartPage'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/cart')({
@@ -6,5 +6,5 @@ export const Route = createFileRoute('/cart')({
 })
 
 function Cart() {
-  return <CartList />
+  return <CartPage />
 }

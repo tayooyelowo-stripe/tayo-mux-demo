@@ -959,7 +959,7 @@
 
 "@tanstack/react-query@^5.81.5":
   version "5.81.5"
-  resolved "https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.81.5.tgz"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.81.5.tgz#660dba8bb35f24c4cf3617b299a1e3990a3bb49e"
   integrity sha512-lOf2KqRRiYWpQT86eeeftAGnjuTR35myTP8MXyvHa81VlomoAWNEd8x5vkcAfQefu0qtYCvyqLropFZqgI2EQw==
   dependencies:
     "@tanstack/query-core" "5.81.5"
