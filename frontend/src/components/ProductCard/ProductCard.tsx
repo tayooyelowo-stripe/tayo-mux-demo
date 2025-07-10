@@ -10,7 +10,7 @@ import { useCheckout } from "@/hooks/useCheckout";
 interface ProductCardProps extends Product { }
 
 export const ProductCard = (product: ProductCardProps) => {
-  const { img, title, description, price } = product;
+  const { image, name, description, price } = product;
 
   const formattedPrice = useMemo(() => formatPriceToCAD(price), [price]);
   const dispatch = useDispatch();
@@ -21,11 +21,11 @@ export const ProductCard = (product: ProductCardProps) => {
   return (
     <Card.Root maxW="sm" overflow="hidden">
       <Image
-        src={img.src}
-        alt={img.alt}
+        src={image}
+        alt={name}
       />
       <Card.Body gap="2">
-        <Card.Title>{title}</Card.Title>
+        <Card.Title>{name}</Card.Title>
         <Card.Description>
           {description}
         </Card.Description>
@@ -37,7 +37,7 @@ export const ProductCard = (product: ProductCardProps) => {
         <Button
           variant="solid"
           disabled={disableBuyNowButton}
-          onClick={() => createCheckoutSessionMutation.mutate({})}
+          onClick={() => createCheckoutSessionMutation.mutate([product])}
         >
           Buy now
         </Button>
@@ -46,7 +46,7 @@ export const ProductCard = (product: ProductCardProps) => {
           onClick={() => {
             dispatch(addToCart(product));
             toaster.create({
-              description: `${title} has been added to cart.`,
+              description: `${name} has been added to cart.`,
               type: "info",
             })
           }}
