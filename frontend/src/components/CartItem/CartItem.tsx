@@ -5,7 +5,7 @@ import { removeFromCart, updateQuantity, type CartItem as CartItemProp } from "@
 import { useDispatch } from "react-redux";
 import { FaRegTrashAlt } from "react-icons/fa"
 
-export const CartItem = ({ price, quantity, title, id }: CartItemProp) => {
+export const CartItem = ({ price, quantity, name, id }: CartItemProp) => {
     const formattedIndividualPrice = useMemo(() => formatPriceToCAD(price), [price]);
     const formattedTotalPrice = useMemo(() => formatPriceToCAD(price * quantity), [price, quantity]);
     const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export const CartItem = ({ price, quantity, title, id }: CartItemProp) => {
     return <Box borderWidth='1px' borderRadius='md' p={4}>
         <HStack justify='space-between'>
             <VStack align="start" gap={1}>
-                <Text fontWeight='medium'>{title}</Text>
+                <Text fontWeight='medium'>{name}</Text>
                 <Text fontSize='sm'>{formattedIndividualPrice} x {quantity} = {formattedTotalPrice}</Text>
             </VStack>
 
