@@ -23,16 +23,12 @@ const createProduct = async (req: Request, res: Response, next: NextFunction) =>
             }
         });
 
-        console.log({createdProduct});
-
         // https://docs.stripe.com/api/prices/object?lang=node
         const createdPrice = await stripe.prices.create({
             currency: DEFAULT_PRODUCT_CURRENCY,
             unit_amount: price,
             product: createdProduct.id,
         })
-
-        console.log({createdPrice})
 
         const formattedProduct: Product = {
             description: createdProduct.description,
@@ -54,8 +50,6 @@ const getProducts = async (req: Request, res: Response, next: NextFunction) => {
         const limit = parseInt(req.query.limit as string) || DEFAULT_PAGINATION_LIMIT;
         const startingAfter = req.query.startingAfter as string;
 
-        console.log({startingAfter, limit});
-        console.log(req.query);
 
         const productsParams: Stripe.ProductListParams = {
             limit,
@@ -68,7 +62,6 @@ const getProducts = async (req: Request, res: Response, next: NextFunction) => {
 
         // https://docs.stripe.com/api/products/list?lang=node
         const products = await stripe.products.list(productsParams);
-        console.log({ products: products.data });
 
         const prices = await Promise.all(
             // https://docs.stripe.com/api/prices/retrieve?lang=node

@@ -12,8 +12,6 @@ export const useProducts = () => {
                 url.searchParams.set('startingAfter', startingAfter);
             }
 
-            console.log(url)
-
             const res = await fetch(url.toString());
             return res.json();
         },
