@@ -1,5 +1,12 @@
-export const formatPriceToCAD = (rawPrice: number) => {
-    return new Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" }).format(
-    rawPrice,
+const convertCentsToDollars = (priceCents: number) => {
+  return priceCents / 100;
+}
+
+export const formatPriceToCAD = (priceCents: number) => {
+    return new Intl.NumberFormat("en-CA", { 
+      style: "currency", 
+      currency: "CAD" 
+    }).format(
+    convertCentsToDollars(priceCents), // convert
   );
 }

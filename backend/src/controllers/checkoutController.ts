@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import { config } from '../config/config';
 
 const stripe = require('stripe')(config.stripeSecretKey);
-console.log(config.stripeSecretKey);
 
 export const createCheckoutSession = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -11,7 +10,7 @@ export const createCheckoutSession = async (req: Request, res: Response, next: N
         {
           // TODO: Provide the exact Price ID (for example, price_1234) of the product you want to sell
           // I'll eventually get this from the req
-          price: 'price_1RgtqkGbaBCXbyosxI9PAVPe',
+          price: 'price_1RhE4tGbaBCXbyos1iBgJWG2',
           quantity: 1,
         },
       ],
