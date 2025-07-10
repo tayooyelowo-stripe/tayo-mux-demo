@@ -1,13 +1,13 @@
 import { Box, Button, HStack, Icon, Image, Text, VStack } from "@chakra-ui/react";
 import { useMemo } from "react";
-import { formatPriceToCAD } from "@/utils/formatMoney";
+import { formatPriceToCurrency } from "@/utils/formatMoney";
 import { removeFromCart, updateQuantity, type CartItem as CartItemProp } from "@/redux/features/cart/cartSlice";
 import { useDispatch } from "react-redux";
 import { FaRegTrashAlt } from "react-icons/fa";
 
-export const CartItem = ({ price, quantity, name, id, image }: CartItemProp) => {
-    const formattedIndividualPrice = useMemo(() => formatPriceToCAD(price), [price]);
-    const formattedTotalPrice = useMemo(() => formatPriceToCAD(price * quantity), [price, quantity]);
+export const CartItem = ({ price, quantity, name, id, image, currency }: CartItemProp) => {
+    const formattedIndividualPrice = useMemo(() => formatPriceToCurrency(price, currency), [price, currency]);
+    const formattedTotalPrice = useMemo(() => formatPriceToCurrency(price * quantity, currency), [price, quantity, currency]);
     const dispatch = useDispatch();
 
     return (

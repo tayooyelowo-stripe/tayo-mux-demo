@@ -1,6 +1,6 @@
 import { addToCart } from "@/redux/features/cart/cartSlice";
 import type { Product } from "@/types/Product";
-import { formatPriceToCAD } from "@/utils/formatMoney";
+import { formatPriceToCurrency } from "@/utils/formatMoney";
 import { Button, Card, Image, Text } from "@chakra-ui/react"
 import { useMemo } from "react";
 import { useDispatch } from "react-redux";
@@ -10,9 +10,9 @@ import { useCheckout } from "@/hooks/useCheckout";
 interface ProductCardProps extends Product { }
 
 export const ProductCard = (product: ProductCardProps) => {
-  const { image, name, description, price } = product;
+  const { image, name, description, price, currency } = product;
 
-  const formattedPrice = useMemo(() => formatPriceToCAD(price), [price]);
+  const formattedPrice = useMemo(() => formatPriceToCurrency(price, currency), [price, currency]);
   const dispatch = useDispatch();
   const { createCheckoutSessionMutation } = useCheckout();
 

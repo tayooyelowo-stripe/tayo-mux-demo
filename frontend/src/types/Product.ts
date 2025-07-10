@@ -5,6 +5,7 @@ export interface Product {
     name: string;
     price: number;
     priceId: string;
+    currency: string;
 }
 
 export interface ProductResponse {
