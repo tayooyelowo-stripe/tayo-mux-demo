@@ -13,7 +13,7 @@ const createProduct = async (req: Request, res: Response, next: NextFunction) =>
         // Based on https://docs.stripe.com/api/products/create?lang=node
         const createdProduct = await stripe.products.create({
             name,
-            active: Boolean(req.body.active),
+            active: Boolean(active),
             description,
             shippable: Boolean(req.body.shippable),
             images: req.body.hasOwnProperty('images') ? req.body.images : [],
@@ -25,7 +25,7 @@ const createProduct = async (req: Request, res: Response, next: NextFunction) =>
 
         // https://docs.stripe.com/api/prices/object?lang=node
         const createdPrice = await stripe.prices.create({
-            currency: DEFAULT_PRODUCT_CURRENCY,
+            currency: req.body.hasOwnProperty('currency') ? req.body.currency : DEFAULT_PRODUCT_CURRENCY,
             unit_amount: price,
             product: createdProduct.id,
         })
@@ -78,6 +78,7 @@ const getProducts = async (req: Request, res: Response, next: NextFunction) => {
                 name: product.name,
                 price: price.unit_amount,
                 priceId: price.id,
+                currency: price.currency,
             }
         });
 
