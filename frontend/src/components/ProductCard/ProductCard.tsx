@@ -23,6 +23,7 @@ export const ProductCard = (product: ProductCardProps) => {
       <Image
         src={image}
         alt={name}
+        aspectRatio={4 / 3}
       />
       <Card.Body gap="2">
         <Card.Title>{name}</Card.Title>
