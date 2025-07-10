@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 
 export const useCheckout = () => {
     const createCheckoutSessionMutation = useMutation({
-        mutationFn: async (checkoutData?: Record<string, any>) => {
+        mutationFn: async (checkoutData?: Record<string, any>[]) => {
             const response = await fetch("http://localhost:3000/api/checkout/create-checkout-session", {
                 method: 'POST',
                 headers: {

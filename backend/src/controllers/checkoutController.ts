@@ -1,26 +1,31 @@
 import { Request, Response, NextFunction } from 'express';
 import { config } from '../config/config';
+import { Product } from '../models/product';
 
 const stripe = require('stripe')(config.stripeSecretKey);
 
+interface LineItem extends Product {
+  quantity?: number;
+}
+
 export const createCheckoutSession = async (req: Request, res: Response, next: NextFunction) => {
   try {
+    const rawLineItems = req.body ? req.body : [];
+    const updatedLineItems = rawLineItems.map((lineItem: LineItem) => {
+      return {
+        price: lineItem.priceId,
+        quantity: lineItem.hasOwnProperty('quantity') ? lineItem.quantity : 1,
+      }
+    });
+
     const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          // TODO: Provide the exact Price ID (for example, price_1234) of the product you want to sell
-          // I'll eventually get this from the req
-          price: 'price_1RhE4tGbaBCXbyos1iBgJWG2',
-          quantity: 1,
-        },
-      ],
+      line_items: updatedLineItems,
       mode: 'payment',
       success_url: `${config.webDomain}?success=true`,
       cancel_url: `${config.webDomain}?canceled=true`,
     });
 
-    // res.redirect(303, session.url);
-    res.status(201).json({url: session.url});
+    res.status(201).json({ url: session.url });
   } catch (error) {
     next(error);
   }
