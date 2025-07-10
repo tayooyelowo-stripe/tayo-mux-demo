@@ -33,7 +33,7 @@ export const ProductList = () => {
     // TODO: Ideally should use a virtualized list
     return (
         <Box w="100%">
-            <SimpleGrid minChildWidth="sm" gap="40px">
+            <SimpleGrid columns={[1, 2, 3, 4]} gap="40px">
                 {products.map((card) => (
                     <ProductCard key={card.id} {...card} />
                 ))}

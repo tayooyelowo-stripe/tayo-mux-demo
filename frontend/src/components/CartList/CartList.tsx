@@ -1,4 +1,4 @@
-import { Heading, HStack, Separator, Text } from "@chakra-ui/react";
+import { HStack, Separator, Text } from "@chakra-ui/react";
 import { CartItem } from "@/components/CartItem/CartItem";
 import { useSelector } from 'react-redux';
 import { selectCartTotal } from "@/redux/features/cart/cartSlice";
@@ -28,10 +28,6 @@ export const CartList = () => {
 
     return (
         <>
-            <Heading size="lg" mb={4}>
-                Your Bag
-            </Heading>
-
             {emptyCartMessageElement}
             {cartItemsElement}
         </>

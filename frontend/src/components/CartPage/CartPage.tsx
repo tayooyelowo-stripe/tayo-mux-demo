@@ -1,7 +1,7 @@
 import { CartList } from '@/components/CartList/CartList';
 import { useDispatch, useSelector, } from 'react-redux';
 import type { RootState } from "@/redux/store";
-import { Box, Button, HStack, VStack } from '@chakra-ui/react';
+import { Box, Button, Heading, HStack, VStack } from '@chakra-ui/react';
 import { useCheckout } from '@/hooks/useCheckout';
 import { clearCart } from "@/redux/features/cart/cartSlice";
 
@@ -13,28 +13,33 @@ export const CartPage = () => {
     const disableCheckoutButton = cartItems.length === 0 || createCheckoutSessionMutation.isPending;
 
     return (
-        <Box p={6}>
-            <VStack>
-                <CartList />
-                <HStack justifyContent={'flex-end'}>
-                    <Button
-                        size="sm"
-                        colorScheme="red"
-                        variant="outline"
-                        onClick={() => dispatch(clearCart())}
-                    >
-                        Clear Cart
-                    </Button>
+        <>
+        <Heading size="lg" mb={4}>
+            Your Bag
+        </Heading>
+            <Box p={6}>
+                <VStack>
+                    <CartList />
+                    <HStack justifyContent={'flex-end'}>
+                        <Button
+                            size="sm"
+                            colorScheme="red"
+                            variant="outline"
+                            onClick={() => dispatch(clearCart())}
+                        >
+                            Clear Cart
+                        </Button>
 
-                    <Button
-                        type="submit"
-                        disabled={disableCheckoutButton}
-                        onClick={() => createCheckoutSessionMutation.mutate(cartItems)}
-                    >
-                        Checkout
-                    </Button>
-                </HStack>
-            </VStack>
-        </Box>
+                        <Button
+                            type="submit"
+                            disabled={disableCheckoutButton}
+                            onClick={() => createCheckoutSessionMutation.mutate(cartItems)}
+                        >
+                            Checkout
+                        </Button>
+                    </HStack>
+                </VStack>
+            </Box>
+        </>
     )
 }
