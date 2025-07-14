@@ -5,6 +5,8 @@ const DEFAULTS: Config = {
     nodeEnv: 'development',
     webDomain: 'http://localhost:5173',
     stripeSecretKey: '',
+    stripeWebhookSigningSecret: '',
+    mongodbUri: '',
 };
 
 dotenv.config();
@@ -14,6 +16,8 @@ interface Config {
     nodeEnv: string;
     webDomain: string;
     stripeSecretKey: string;
+    stripeWebhookSigningSecret: string;
+    mongodbUri: string;
 }
 
 const PORT = Number(process.env.PORT) || DEFAULTS.port;
@@ -23,4 +27,6 @@ export const config: Config = {
     nodeEnv: process.env.NODE_ENV || DEFAULTS.nodeEnv,
     webDomain: process.env.DOMAIN || `${DEFAULTS.webDomain}`,
     stripeSecretKey: process.env.STRIPE_SECRET_KEY || DEFAULTS.stripeSecretKey,
+    stripeWebhookSigningSecret: process.env.STRIPE_WEBHOOK_SIGNING_SECRET || DEFAULTS.stripeWebhookSigningSecret,
+    mongodbUri: process.env.MONGODB_URI || DEFAULTS.mongodbUri,
 };
