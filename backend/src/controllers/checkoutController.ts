@@ -23,6 +23,9 @@ export const createCheckoutSession = async (req: Request, res: Response, next: N
       mode: 'payment',
       success_url: `${config.webDomain}?success=true`,
       cancel_url: `${config.webDomain}?canceled=true`,
+      metadata: {
+        created_at: new Date().toISOString()
+      }
     });
 
     res.status(201).json({ url: session.url });
